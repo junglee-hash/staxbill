@@ -1,0 +1,14 @@
+CREATE TABLE [dmsqa].[awsdms_validation_failures_v1] (
+    [TASK_NAME]    VARCHAR (128)  NOT NULL,
+    [TABLE_OWNER]  VARCHAR (128)  NOT NULL,
+    [TABLE_NAME]   VARCHAR (128)  NOT NULL,
+    [FAILURE_TIME] DATETIME2 (3)  NOT NULL,
+    [KEY_TYPE]     VARCHAR (128)  NOT NULL,
+    [KEY]          VARCHAR (7800) NOT NULL,
+    [FAILURE_TYPE] VARCHAR (128)  NOT NULL,
+    [DETAILS]      VARCHAR (7800) NOT NULL
+);
+
+
+GO
+

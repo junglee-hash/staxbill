@@ -1,0 +1,9 @@
+CREATE TABLE [Lookup].[ChargeModelType] (
+    [Id]   INT          IDENTITY (1, 1) NOT NULL,
+    [Name] VARCHAR (50) NOT NULL,
+    CONSTRAINT [PK_ChargeModelType] PRIMARY KEY CLUSTERED ([Id] ASC) WITH (FILLFACTOR = 100, STATISTICS_NORECOMPUTE = ON)
+);
+
+
+GO
+

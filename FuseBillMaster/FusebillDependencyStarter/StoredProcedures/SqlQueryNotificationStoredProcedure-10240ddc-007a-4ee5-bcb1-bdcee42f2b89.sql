@@ -1,0 +1,4 @@
+CREATE PROCEDURE [FusebillDependencyStarter].[SqlQueryNotificationStoredProcedure-10240ddc-007a-4ee5-bcb1-bdcee42f2b89] AS BEGIN BEGIN TRANSACTION; RECEIVE TOP(0) conversation_handle FROM [SqlQueryNotificationService-10240ddc-007a-4ee5-bcb1-bdcee42f2b89]; IF (SELECT COUNT(*) FROM [SqlQueryNotificationService-10240ddc-007a-4ee5-bcb1-bdcee42f2b89] WHERE message_type_name = 'http://schemas.microsoft.com/SQL/ServiceBroker/DialogTimer') > 0 BEGIN if ((SELECT COUNT(*) FROM sys.services WHERE name = 'SqlQueryNotificationService-10240ddc-007a-4ee5-bcb1-bdcee42f2b89') > 0)   DROP SERVICE [SqlQueryNotificationService-10240ddc-007a-4ee5-bcb1-bdcee42f2b89]; if (OBJECT_ID('SqlQueryNotificationService-10240ddc-007a-4ee5-bcb1-bdcee42f2b89', 'SQ') IS NOT NULL)   DROP QUEUE [SqlQueryNotificationService-10240ddc-007a-4ee5-bcb1-bdcee42f2b89]; DROP PROCEDURE [SqlQueryNotificationStoredProcedure-10240ddc-007a-4ee5-bcb1-bdcee42f2b89]; END COMMIT TRANSACTION; END
+
+GO
+

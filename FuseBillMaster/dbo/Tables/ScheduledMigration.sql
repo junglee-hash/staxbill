@@ -1,0 +1,40 @@
+CREATE TABLE [dbo].[ScheduledMigration] (
+    [Id]                          BIGINT   NOT NULL,
+    [CustomerId]                  BIGINT   NOT NULL,
+    [PlanFamilyId]                BIGINT   NOT NULL,
+    [PlanFamilyRelationshipId]    BIGINT   NOT NULL,
+    [PlanFrequencyId]             BIGINT   NOT NULL,
+    [EarningOptionId]             INT      NOT NULL,
+    [NameOverrideOptionId]        INT      NOT NULL,
+    [DescriptionOverrideOptionId] INT      NOT NULL,
+    [ReferenceOptionId]           INT      NOT NULL,
+    [ExpiryOptionId]              INT      NOT NULL,
+    [ContractStartOptionId]       INT      NOT NULL,
+    [ContractEndOptionId]         INT      NOT NULL,
+    [CreatedTimestamp]            DATETIME NOT NULL,
+    [ModifiedTimestamp]           DATETIME NOT NULL,
+    [MigrationTimingOptionId]     INT      CONSTRAINT [DF_ScheduledMigration_MigrationTimingOptionId] DEFAULT ((2)) NOT NULL,
+    [SpecifiedDate]               DATETIME NULL,
+    [CustomFieldsOptionId]        INT      NOT NULL,
+    [CouponCodeId]                BIGINT   NULL,
+    CONSTRAINT [PK_ScheduledMigration] PRIMARY KEY CLUSTERED ([Id] ASC) WITH (FILLFACTOR = 100),
+    CONSTRAINT [FK_ScheduledMigration_CouponCode] FOREIGN KEY ([CouponCodeId]) REFERENCES [dbo].[CouponCode] ([Id]),
+    CONSTRAINT [FK_ScheduledMigration_CustomFieldsOptionId] FOREIGN KEY ([CustomFieldsOptionId]) REFERENCES [Lookup].[PlanFamilyMigrationOptions] ([Id]),
+    CONSTRAINT [FK_Subscription_ContractEndOption] FOREIGN KEY ([ContractEndOptionId]) REFERENCES [Lookup].[PlanFamilyMigrationOptions] ([Id]),
+    CONSTRAINT [FK_Subscription_ContractStartOption] FOREIGN KEY ([ContractStartOptionId]) REFERENCES [Lookup].[PlanFamilyMigrationOptions] ([Id]),
+    CONSTRAINT [FK_Subscription_Customer] FOREIGN KEY ([CustomerId]) REFERENCES [dbo].[Customer] ([Id]),
+    CONSTRAINT [FK_Subscription_DescriptionOverrideOption] FOREIGN KEY ([DescriptionOverrideOptionId]) REFERENCES [Lookup].[PlanFamilyMigrationOptions] ([Id]),
+    CONSTRAINT [FK_Subscription_EarningOption] FOREIGN KEY ([EarningOptionId]) REFERENCES [Lookup].[PlanFamilyEarningOptions] ([Id]),
+    CONSTRAINT [FK_Subscription_ExpiryOption] FOREIGN KEY ([ExpiryOptionId]) REFERENCES [Lookup].[PlanFamilyMigrationOptions] ([Id]),
+    CONSTRAINT [FK_Subscription_MigrationTimingOptions] FOREIGN KEY ([MigrationTimingOptionId]) REFERENCES [Lookup].[MigrationTimingOptions] ([Id]),
+    CONSTRAINT [FK_Subscription_NameOverrideOption] FOREIGN KEY ([NameOverrideOptionId]) REFERENCES [Lookup].[PlanFamilyMigrationOptions] ([Id]),
+    CONSTRAINT [FK_Subscription_PlanFamily] FOREIGN KEY ([PlanFamilyId]) REFERENCES [dbo].[PlanFamily] ([Id]),
+    CONSTRAINT [FK_Subscription_PlanFamilyRelationship] FOREIGN KEY ([PlanFamilyRelationshipId]) REFERENCES [dbo].[PlanFamilyRelationship] ([Id]),
+    CONSTRAINT [FK_Subscription_PlanFrequency] FOREIGN KEY ([PlanFrequencyId]) REFERENCES [dbo].[PlanFrequency] ([Id]),
+    CONSTRAINT [FK_Subscription_ReferenceOption] FOREIGN KEY ([ReferenceOptionId]) REFERENCES [Lookup].[PlanFamilyMigrationOptions] ([Id]),
+    CONSTRAINT [FK_Subscription_ScheduledMigration] FOREIGN KEY ([Id]) REFERENCES [dbo].[Subscription] ([Id])
+);
+
+
+GO
+

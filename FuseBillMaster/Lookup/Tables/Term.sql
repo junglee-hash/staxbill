@@ -1,0 +1,16 @@
+CREATE TABLE [Lookup].[Term] (
+    [Id]         INT          NOT NULL,
+    [Name]       VARCHAR (50) NOT NULL,
+    [DaysOffset] INT          CONSTRAINT [DF_Term_DaysOffset] DEFAULT ((0)) NOT NULL,
+    CONSTRAINT [PK_Term] PRIMARY KEY CLUSTERED ([Id] ASC) WITH (FILLFACTOR = 100, STATISTICS_NORECOMPUTE = ON)
+);
+
+
+GO
+
+CREATE NONCLUSTERED INDEX [IX_Term_Name]
+    ON [Lookup].[Term]([Name] ASC) WITH (FILLFACTOR = 100, STATISTICS_NORECOMPUTE = ON);
+
+
+GO
+

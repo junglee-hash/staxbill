@@ -1,0 +1,9 @@
+CREATE TABLE [dbo].[PlanProductKey] (
+    [Id]               BIGINT   IDENTITY (1, 1) NOT NULL,
+    [CreatedTimestamp] DATETIME NOT NULL,
+    CONSTRAINT [PK_PlanProductKey] PRIMARY KEY CLUSTERED ([Id] ASC) WITH (FILLFACTOR = 100, STATISTICS_NORECOMPUTE = ON)
+);
+
+
+GO
+

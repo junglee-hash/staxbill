@@ -1,0 +1,9 @@
+CREATE TABLE [Lookup].[AuditSource] (
+    [Id]   INT           NOT NULL,
+    [Name] VARCHAR (100) NOT NULL,
+    CONSTRAINT [PK_AuditSource] PRIMARY KEY CLUSTERED ([Id] ASC) WITH (FILLFACTOR = 100, STATISTICS_NORECOMPUTE = ON)
+);
+
+
+GO
+

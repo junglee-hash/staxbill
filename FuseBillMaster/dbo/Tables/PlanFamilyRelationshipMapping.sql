@@ -1,0 +1,40 @@
+CREATE TABLE [dbo].[PlanFamilyRelationshipMapping] (
+    [Id]                                             BIGINT   IDENTITY (1, 1) NOT NULL,
+    [PlanFamilyRelationshipId]                       BIGINT   NOT NULL,
+    [SourcePlanProductId]                            BIGINT   NOT NULL,
+    [DestinationPlanProductId]                       BIGINT   NULL,
+    [ModifiedTimestamp]                              DATETIME NOT NULL,
+    [CreatedTimestamp]                               DATETIME NOT NULL,
+    [NameOverrideOptionId]                           INT      CONSTRAINT [DF_NameOverride] DEFAULT ((1)) NOT NULL,
+    [DescriptionOverrideOptionId]                    INT      CONSTRAINT [DF_DescriptionOverride] DEFAULT ((1)) NOT NULL,
+    [QuantityOptionId]                               INT      CONSTRAINT [DF_Quantity] DEFAULT ((1)) NOT NULL,
+    [UpliftOptionId]                                 INT      CONSTRAINT [DF_Uplift] DEFAULT ((1)) NOT NULL,
+    [InclusionOptionId]                              INT      NOT NULL,
+    [DiscountOptionId]                               INT      CONSTRAINT [DF_Discount] DEFAULT ((1)) NOT NULL,
+    [ExpiryOptionId]                                 INT      CONSTRAINT [DF_Expiry] DEFAULT ((1)) NOT NULL,
+    [ScheduledDateOptionId]                          INT      CONSTRAINT [DF_ScheduledDate] DEFAULT ((1)) NOT NULL,
+    [CustomFieldsOptionId]                           INT      CONSTRAINT [DF_CustomFields] DEFAULT ((1)) NOT NULL,
+    [PriceOverrideOptionId]                          INT      CONSTRAINT [DF_PriceOverride] DEFAULT ((2)) NOT NULL,
+    [PriceOverrideDiscountRemainingUsagesUntilStart] INT      NULL,
+    [PriceOverrideDiscountRemainingUsage]            INT      NULL,
+    [PriceOverrideDiscountTypeId]                    INT      NULL,
+    CONSTRAINT [PK_PlanFamilyRelationshipMapping] PRIMARY KEY CLUSTERED ([Id] ASC) WITH (FILLFACTOR = 100, STATISTICS_NORECOMPUTE = ON),
+    CONSTRAINT [FK_PlanFamilityRelationshipMapping_PriceOverrideOptionId] FOREIGN KEY ([PriceOverrideOptionId]) REFERENCES [Lookup].[ProductPriceMigrationOptions] ([Id]),
+    CONSTRAINT [FK_PlanFamilyRelationshipMapping_CustomFieldsOptionId] FOREIGN KEY ([CustomFieldsOptionId]) REFERENCES [Lookup].[PlanFamilyMigrationOptions] ([Id]),
+    CONSTRAINT [FK_PlanFamilyRelationshipMapping_DescriptionOverrideOptionId] FOREIGN KEY ([DescriptionOverrideOptionId]) REFERENCES [Lookup].[PlanFamilyMigrationOptions] ([Id]),
+    CONSTRAINT [FK_PlanFamilyRelationshipMapping_DestinationPlanProductId] FOREIGN KEY ([DestinationPlanProductId]) REFERENCES [dbo].[PlanProduct] ([Id]),
+    CONSTRAINT [FK_PlanFamilyRelationshipMapping_DiscountOptionId] FOREIGN KEY ([DiscountOptionId]) REFERENCES [Lookup].[PlanFamilyMigrationOptions] ([Id]),
+    CONSTRAINT [FK_PlanFamilyRelationshipMapping_DiscountType] FOREIGN KEY ([PriceOverrideDiscountTypeId]) REFERENCES [Lookup].[DiscountType] ([Id]),
+    CONSTRAINT [FK_PlanFamilyRelationshipMapping_ExpiryOptionId] FOREIGN KEY ([ExpiryOptionId]) REFERENCES [Lookup].[PlanFamilyMigrationOptions] ([Id]),
+    CONSTRAINT [FK_PlanFamilyRelationshipMapping_InclusionOptionId] FOREIGN KEY ([InclusionOptionId]) REFERENCES [Lookup].[InclusionMigrationOption] ([Id]),
+    CONSTRAINT [FK_PlanFamilyRelationshipMapping_NameOverrideOptionId] FOREIGN KEY ([NameOverrideOptionId]) REFERENCES [Lookup].[PlanFamilyMigrationOptions] ([Id]),
+    CONSTRAINT [FK_PlanFamilyRelationshipMapping_PlanFamilyRelationshipId] FOREIGN KEY ([PlanFamilyRelationshipId]) REFERENCES [dbo].[PlanFamilyRelationship] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_PlanFamilyRelationshipMapping_QuantityOptionId] FOREIGN KEY ([QuantityOptionId]) REFERENCES [Lookup].[PlanFamilyMigrationOptions] ([Id]),
+    CONSTRAINT [FK_PlanFamilyRelationshipMapping_ScheduledDateOptionId] FOREIGN KEY ([ScheduledDateOptionId]) REFERENCES [Lookup].[PlanFamilyMigrationOptions] ([Id]),
+    CONSTRAINT [FK_PlanFamilyRelationshipMapping_SourcePlanProductId] FOREIGN KEY ([SourcePlanProductId]) REFERENCES [dbo].[PlanProduct] ([Id]),
+    CONSTRAINT [FK_PlanFamilyRelationshipMapping_UpliftOptionId] FOREIGN KEY ([UpliftOptionId]) REFERENCES [Lookup].[PlanFamilyMigrationOptions] ([Id])
+);
+
+
+GO
+

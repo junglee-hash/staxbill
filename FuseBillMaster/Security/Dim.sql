@@ -1,0 +1,6 @@
+CREATE SCHEMA [Dim]
+    AUTHORIZATION [admin];
+
+
+GO
+

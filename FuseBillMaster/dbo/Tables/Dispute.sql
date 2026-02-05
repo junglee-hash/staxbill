@@ -1,0 +1,16 @@
+CREATE TABLE [dbo].[Dispute] (
+    [Id]        BIGINT IDENTITY (1, 1) NOT NULL,
+    [InvoiceId] BIGINT NOT NULL,
+    CONSTRAINT [PK_Dispute] PRIMARY KEY CLUSTERED ([Id] ASC) WITH (FILLFACTOR = 100, STATISTICS_NORECOMPUTE = ON),
+    CONSTRAINT [FK_Dispute_Invoice] FOREIGN KEY ([InvoiceId]) REFERENCES [dbo].[Invoice] ([Id])
+);
+
+
+GO
+
+CREATE NONCLUSTERED INDEX [IX_Dispute_InvoiceId]
+    ON [dbo].[Dispute]([InvoiceId] ASC) WITH (FILLFACTOR = 100, STATISTICS_NORECOMPUTE = ON);
+
+
+GO
+

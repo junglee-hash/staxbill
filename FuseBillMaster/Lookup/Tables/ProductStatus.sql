@@ -1,0 +1,9 @@
+CREATE TABLE [Lookup].[ProductStatus] (
+    [Id]   INT           NOT NULL,
+    [Name] VARCHAR (100) NOT NULL,
+    CONSTRAINT [PK_ProductStatus] PRIMARY KEY CLUSTERED ([Id] ASC) WITH (FILLFACTOR = 100, STATISTICS_NORECOMPUTE = ON)
+);
+
+
+GO
+

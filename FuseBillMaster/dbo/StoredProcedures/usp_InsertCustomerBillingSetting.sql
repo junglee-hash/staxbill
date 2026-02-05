@@ -1,0 +1,81 @@
+CREATE PROC [dbo].[usp_InsertCustomerBillingSetting]
+
+	@Id bigint,
+	@CreatedTimestamp datetime,
+	@ModifiedTimestamp datetime,
+	@InvoiceDay int,
+	@TermId int,
+	@IntervalId int,
+	@AutoCollect bit,
+	@AutoPostDraftInvoice bit,
+	@CustomerGracePeriod int,
+	@GracePeriodExtension int,
+	@StandingPo varchar(255),
+	@AcquisitionCost decimal,
+	@ShowZeroDollarCharges bit,
+	@TaxExempt bit,
+	@TaxExemptCode nvarchar(255),
+	@CustomerServiceStartOptionId int,
+	@RechargeTypeId int,
+	@RechargeThresholdAmount decimal,
+	@RechargeTargetAmount decimal,
+	@StatusOnThreshold bit,
+	@AvalaraUsageType varchar(4),
+	@VATIdentificationNumber nvarchar(25),
+	@UseCustomerBillingAddress bit
+AS
+SET NOCOUNT ON
+	INSERT INTO [CustomerBillingSetting] (
+		[Id],
+		[CreatedTimestamp],
+		[ModifiedTimestamp],
+		[InvoiceDay],
+		[TermId],
+		[IntervalId],
+		[AutoCollect],
+		[AutoPostDraftInvoice],
+		[CustomerGracePeriod],
+		[GracePeriodExtension],
+		[StandingPo],
+		[AcquisitionCost],
+		[ShowZeroDollarCharges],
+		[TaxExempt],
+		[TaxExemptCode],
+		[CustomerServiceStartOptionId],
+		[RechargeTypeId],
+		[RechargeThresholdAmount],
+		[RechargeTargetAmount],
+		[StatusOnThreshold],
+		[AvalaraUsageType],
+		[VATIdentificationNumber],
+		[UseCustomerBillingAddress]
+	)
+	VALUES (
+		@Id,
+		@CreatedTimestamp,
+		@ModifiedTimestamp,
+		@InvoiceDay,
+		@TermId,
+		@IntervalId,
+		@AutoCollect,
+		@AutoPostDraftInvoice,
+		@CustomerGracePeriod,
+		@GracePeriodExtension,
+		@StandingPo,
+		@AcquisitionCost,
+		@ShowZeroDollarCharges,
+		@TaxExempt,
+		@TaxExemptCode,
+		@CustomerServiceStartOptionId,
+		@RechargeTypeId,
+		@RechargeThresholdAmount,
+		@RechargeTargetAmount,
+		@StatusOnThreshold,
+		@AvalaraUsageType,
+		@VATIdentificationNumber,
+		@UseCustomerBillingAddress
+	)
+	SELECT SCOPE_IDENTITY() As InsertedID
+
+GO
+

@@ -1,0 +1,5 @@
+c:\Users\JungLee\OneDrive - Stax\Documents\GitHub\staxbill\DatabaseProjectFusebillMaster\bin\Debug\DatabaseProjectFusebillMaster.dacpac
+c:\Users\JungLee\OneDrive - Stax\Documents\GitHub\staxbill\DatabaseProjectFusebillMaster\obj\Debug\Model.xml
+c:\Users\JungLee\OneDrive - Stax\Documents\GitHub\staxbill\DatabaseProjectFusebillMaster\obj\Debug\refactor.xml
+c:\Users\JungLee\OneDrive - Stax\Documents\GitHub\staxbill\DatabaseProjectFusebillMaster\obj\Debug\postdeploy.sql
+c:\Users\JungLee\OneDrive - Stax\Documents\GitHub\staxbill\DatabaseProjectFusebillMaster\obj\Debug\predeploy.sql

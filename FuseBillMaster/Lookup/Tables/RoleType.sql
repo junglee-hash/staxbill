@@ -1,0 +1,9 @@
+CREATE TABLE [Lookup].[RoleType] (
+    [Id]   INT           NOT NULL,
+    [Name] VARCHAR (100) NOT NULL,
+    CONSTRAINT [PK__lkRole] PRIMARY KEY CLUSTERED ([Id] ASC) WITH (FILLFACTOR = 100, STATISTICS_NORECOMPUTE = ON)
+);
+
+
+GO
+
